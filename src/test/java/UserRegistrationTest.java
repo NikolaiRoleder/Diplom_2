@@ -1,10 +1,10 @@
 import io.qameta.allure.junit4.DisplayName;
-import pojo.User;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import pojo.User;
 import pojo.UserCredentials;
 
 import static org.junit.Assert.*;
@@ -18,13 +18,16 @@ public class UserRegistrationTest {
     public void setUp() {
         userClient = new UserClient();
         user = UserData.getRandomUser();
-}
+    }
+
     @After
-    public void cleanUp(){UserClient.deleteUser(accessToken);}
+    public void cleanUp() {
+        UserClient.deleteUser(accessToken);
+    }
 
     @DisplayName("Регистрация пользователя")
     @Test
-    public void userCanBeCreated(){
+    public void userCanBeCreated() {
         ValidatableResponse createResponse = userClient.createUser(user);
         int createStatusCode = createResponse.extract().statusCode();
         assertEquals(HttpStatus.SC_OK, createStatusCode);
@@ -36,9 +39,10 @@ public class UserRegistrationTest {
         String refreshToken = createResponse.extract().path("refreshToken");
         assertNotNull(refreshToken);
     }
+
     @DisplayName("Повторная регистрация пользователя с теми же кредами")
     @Test
-    public void impossibleCreateSameUser(){
+    public void impossibleCreateSameUser() {
         //Создаем пользователя
         userClient.createUser(user);
 

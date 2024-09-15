@@ -1,10 +1,11 @@
 import io.qameta.allure.junit4.DisplayName;
-import pojo.Order;
-import pojo.User;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
+import pojo.Order;
+import pojo.User;
+
 import java.util.List;
 import java.util.Map;
 
@@ -34,10 +35,10 @@ public class GiveOrderTest {
         ValidatableResponse createResponse = userClient.createUser(user);
         accessToken = createResponse.extract().path("accessToken");
         //Создаем заказ что бы проверить тело ответа
-        orderClient.createOrder(order,accessToken);
+        orderClient.createOrder(order, accessToken);
         // Получаем список заказов конкретного пользователя
         ValidatableResponse giveOrderResponse = orderClient.giveOrder(accessToken);
-        List<Map<String, String >> orderList = giveOrderResponse.extract().path("orders");
+        List<Map<String, String>> orderList = giveOrderResponse.extract().path("orders");
         int createStatusCode = giveOrderResponse.extract().statusCode();
         assertEquals(HttpStatus.SC_OK, createStatusCode);
         boolean created = giveOrderResponse.extract().path("success");
@@ -46,9 +47,10 @@ public class GiveOrderTest {
         // Удаляем пользователя
         UserClient.deleteUser(accessToken);
     }
+
     @DisplayName("Получение истории заказов у незалогиненого пользователя")
     @Test
-    public void giveOrderNotLoginUserTest(){
+    public void giveOrderNotLoginUserTest() {
         // Создаем некорректный accessToken, для прохождения проверки незарегестрированого пользователя
         ValidatableResponse giveErrorOrderResponse = orderClient.giveOrder();
         int createStatusCode = giveErrorOrderResponse.extract().statusCode();

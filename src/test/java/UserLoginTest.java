@@ -1,9 +1,9 @@
 import io.qameta.allure.junit4.DisplayName;
-import pojo.User;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
+import pojo.User;
 import pojo.UserCredentials;
 
 import static org.junit.Assert.*;
@@ -21,7 +21,7 @@ public class UserLoginTest {
 
     @DisplayName("Логин пользователя с коректными кредами")
     @Test
-    public void userCanBeLogin(){
+    public void userCanBeLogin() {
         // сначала регистрируем пользователя
         userClient.createUser(user);
         //Проверяем, что можем залогинится под кредами ранее созданного пользователя
@@ -38,14 +38,15 @@ public class UserLoginTest {
         // Сравниваем параметры из тела ответа
         String actualUserName = createResponse.extract().path("user.name");
         String actualUserEmail = createResponse.extract().path("user.email");
-        assertEquals(user.getName(),actualUserName);
-        assertEquals(user.getEmail(),actualUserEmail);
+        assertEquals(user.getName(), actualUserName);
+        assertEquals(user.getEmail(), actualUserEmail);
         //удаляем данные о пользователе.
         UserClient.deleteUser(accessToken);
     }
+
     @DisplayName("Логин пользователя с некоректными кредами")
     @Test
-    public void loginWithIncorrectCredential(){
+    public void loginWithIncorrectCredential() {
         ValidatableResponse createErrorResponse = userClient.loginUser(UserCredentials.from(user));
         int createStatusCode = createErrorResponse.extract().statusCode();
         assertEquals(HttpStatus.SC_UNAUTHORIZED, createStatusCode);

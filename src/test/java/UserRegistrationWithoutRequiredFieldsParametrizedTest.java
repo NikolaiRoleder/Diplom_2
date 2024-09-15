@@ -15,17 +15,11 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 
 public class UserRegistrationWithoutRequiredFieldsParametrizedTest {
-    private UserClient userClient;
-    private User user;
     private final String email;
     private final String password;
     private final String name;
-
-    @Before
-    public void setUp() {
-        userClient = new UserClient();
-        user = new User(email,password,name);
-    }
+    private UserClient userClient;
+    private User user;
 
     public UserRegistrationWithoutRequiredFieldsParametrizedTest(String email, String password, String name) {
         this.email = email;
@@ -43,6 +37,12 @@ public class UserRegistrationWithoutRequiredFieldsParametrizedTest {
                 {"muska@yandex.ru", "", "praft"},
                 {"quska@yandex.ru", "graft", ""}
         });
+    }
+
+    @Before
+    public void setUp() {
+        userClient = new UserClient();
+        user = new User(email, password, name);
     }
 
     @DisplayName("Регистрация пользователя с различными незаполнеными обязательными полями")
