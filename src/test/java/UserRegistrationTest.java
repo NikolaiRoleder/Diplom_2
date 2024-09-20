@@ -17,7 +17,7 @@ public class UserRegistrationTest {
     @Before
     public void setUp() {
         userClient = new UserClient();
-        user = UserData.getRandomUser();
+        user = UserData.getCorrectUserData();
     }
 
     @After

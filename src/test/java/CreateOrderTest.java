@@ -18,7 +18,7 @@ public class CreateOrderTest {
     @Before
     public void setUp() {
         userClient = new UserClient();
-        user = UserData.getRandomUser();
+        user = UserData.getCorrectUserData();
         orderClient = new OrderClient();
     }
 

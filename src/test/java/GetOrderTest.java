@@ -12,7 +12,7 @@ import java.util.Map;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.*;
 
-public class GiveOrderTest {
+public class GetOrderTest {
     private UserClient userClient;
     private User user;
     private Order order;
@@ -22,7 +22,7 @@ public class GiveOrderTest {
     @Before
     public void setUp() {
         userClient = new UserClient();
-        user = UserData.getRandomUser();
+        user = UserData.getCorrectUserData();
         orderClient = new OrderClient();
     }
 

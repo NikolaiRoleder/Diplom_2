@@ -1,7 +1,7 @@
 import pojo.User;
 
 public class UserData {
-    public static User getRandomUser() {
+    public static User getCorrectUserData() {
         return new User("diplo@yandex.ru", "qwertyui", "nolivochka");
     }
 

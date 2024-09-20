@@ -16,7 +16,7 @@ public class UserLoginTest {
     @Before
     public void setUp() {
         userClient = new UserClient();
-        user = UserData.getRandomUser();
+        user = UserData.getCorrectUserData();
     }
 
     @DisplayName("Логин пользователя с коректными кредами")

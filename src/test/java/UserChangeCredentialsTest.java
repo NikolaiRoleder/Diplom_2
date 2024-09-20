@@ -16,7 +16,7 @@ public class UserChangeCredentialsTest {
     @Before
     public void setUp() {
         userClient = new UserClient();
-        user = UserData.getRandomUser();
+        user = UserData.getCorrectUserData();
         changeUser = UserData.getChangeUserData();
     }
 
